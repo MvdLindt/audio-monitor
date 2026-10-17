@@ -36,9 +36,12 @@ jobs:
         run: |
           Compress-Archive -Path .\publish\* -DestinationPath .\AudioMonitor-v1.0-win-x64.zip -Force
 
-      - name: Upload release asset
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: v1.0
+          name: v1.0
+          draft: false
+          generate_release_notes: true
           files: |
             AudioMonitor-v1.0-win-x64.zip
