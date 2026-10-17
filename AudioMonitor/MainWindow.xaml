@@ -1,0 +1,87 @@
+<Window x:Class="AudioMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Audio Monitor"
+        Width="820"
+        Height="540"
+        MinWidth="720"
+        MinHeight="420"
+        Background="#000000"
+        Foreground="#FFFFFF"
+        WindowStartupLocation="CenterScreen"
+        AutomationProperties.Name="Audio Monitor"
+        AutomationProperties.LiveSetting="Assertive"
+        AutomationProperties.HelpText="Monitors microphone input and plays it to the output device while showing VU meter levels. Gebruik de spatiebalk om te pauzeren/te hervatten."
+        PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Audio Monitor"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Margin="0,0,0,12"
+                   Foreground="#FFFFFF"
+                   AutomationProperties.Name="Audio Monitor title" />
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="150" Height="260" BorderBrush="#FFFFFF" BorderThickness="2" Background="#111111" Margin="0,0,18,0">
+                <Grid>
+                    <Rectangle Fill="#111111" />
+                    <Rectangle Fill="#FF3B30" Height="44" VerticalAlignment="Top" Opacity="0.95" />
+                    <Rectangle x:Name="MeterLeft" Fill="#FFFFFF" Width="100%" Height="0" VerticalAlignment="Bottom" />
+                    <Rectangle Fill="#000000" Opacity="0.15" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Width="150" Height="260" BorderBrush="#FFFFFF" BorderThickness="2" Background="#111111" Margin="0,0,18,0">
+                <Grid>
+                    <Rectangle Fill="#111111" />
+                    <Rectangle Fill="#FF3B30" Height="44" VerticalAlignment="Top" Opacity="0.95" />
+                    <Rectangle x:Name="MeterCenter" Fill="#FFFFFF" Width="100%" Height="0" VerticalAlignment="Bottom" />
+                    <Rectangle Fill="#000000" Opacity="0.15" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Width="150" Height="260" BorderBrush="#FFFFFF" BorderThickness="2" Background="#111111">
+                <Grid>
+                    <Rectangle Fill="#111111" />
+                    <Rectangle Fill="#FF3B30" Height="44" VerticalAlignment="Top" Opacity="0.95" />
+                    <Rectangle x:Name="MeterRight" Fill="#FFFFFF" Width="100%" Height="0" VerticalAlignment="Bottom" />
+                    <Rectangle Fill="#000000" Opacity="0.15" />
+                </Grid>
+            </Border>
+        </Grid>
+
+        <StatusBar Grid.Row="2" Background="#101010" Foreground="#FFFFFF" Padding="6" AutomationProperties.Name="Status Bar">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Monitoring" Foreground="#FFFFFF" />
+            </StatusBarItem>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="MuteButton"
+                            Content="Mute"
+                            Width="110"
+                            Click="MuteButton_Click"
+                            AutomationProperties.Name="Mute monitor output" />
+                </StackPanel>
+            </StatusBarItem>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Text="Druk op spatie om te pauzeren/herstarten" Foreground="#BBBBBB" Margin="12,0,0,0" AutomationProperties.Name="Pauze instructie" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
